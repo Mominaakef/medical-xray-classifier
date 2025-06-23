@@ -109,4 +109,3 @@ plt.close()
 
 # Save model
 model.save("model/model.keras")  # New format recommended by Keras 3+
-

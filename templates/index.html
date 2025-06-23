@@ -2,73 +2,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Medical X-ray Classifier</title>
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #e8f1f5;
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
     }
     .container {
       margin-top: 60px;
-      text-align: center;
     }
     .card {
+      background-color: #1e1e1e;
       padding: 40px;
       border-radius: 20px;
-      background-color: #fff;
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 25px;
-      color: #0d6efd;
+    h1, h4, h5 {
+      color: #00d4ff;
     }
-    h4, h5 {
-      color: #333;
-      font-weight: 600;
+    ul li {
+      color: #e0e0e0;
     }
     .sample-img {
       max-height: 150px;
-      border: 2px solid #dee2e6;
+      border: 2px solid #2c5364;
+    }
+    .btn-primary {
+      background-color: #00bcd4;
+      border: none;
+      padding: 10px 25px;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+    .btn-primary:hover {
+      background-color: #00acc1;
     }
     footer {
       margin-top: 60px;
-      background-color: #d6d6d6;
-      color: #333;
+      background-color: #121212;
+      color: #ccc;
       text-align: center;
       padding: 15px 0;
-      font-size: 15px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container text-center">
     <div class="card">
       <h1>🩻 Medical X-ray Diagnosis</h1>
       <form method="POST" action="/predict" enctype="multipart/form-data">
         <div class="mb-3">
-          <input type="file" name="file" accept="image/*" class="form-control" required>
+          <input type="file" name="file" accept="image/*" class="form-control" required />
         </div>
-        <img id="loading-spinner" src="{{ url_for('static', filename='spinner.gif') }}" style="display:none; width: 60px; margin: 10px;">
-        <br>
+        <img id="loading-spinner" src="{{ url_for('static', filename='spinner.gif') }}" style="display:none; width: 60px; margin: 10px;" />
+        <br />
         <button type="submit" class="btn btn-primary btn-lg">🔍 Predict Disease</button>
       </form>
-    </div>
-
-    <div class="mt-5">
-      <h4>📈 Model Accuracy & Loss Graphs</h4>
-      <div class="row justify-content-center mt-3">
-        <div class="col-md-6">
-          <img src="{{ url_for('static', filename='accuracy_plot.png') }}" class="img-fluid rounded shadow mb-3">
-        </div>
-        <div class="col-md-6">
-          <img src="{{ url_for('static', filename='loss_plot.png') }}" class="img-fluid rounded shadow mb-3">
-        </div>
-      </div>
     </div>
 
     <div class="mt-5 text-start">
@@ -86,19 +80,31 @@
       <div class="row text-center mt-3">
         <div class="col">
           <p><strong>Normal</strong></p>
-          <img src="{{ url_for('static', filename='NORMAL.jpg') }}" class="img-thumbnail sample-img">
+          <img src="{{ url_for('static', filename='NORMAL.jpg') }}" class="img-thumbnail sample-img" />
         </div>
         <div class="col">
           <p><strong>Pneumonia</strong></p>
-          <img src="{{ url_for('static', filename='PNEUMONIA.jpg') }}" class="img-thumbnail sample-img">
+          <img src="{{ url_for('static', filename='PNEUMONIA.jpg') }}" class="img-thumbnail sample-img" />
         </div>
         <div class="col">
           <p><strong>COVID-19</strong></p>
-          <img src="{{ url_for('static', filename='COVID19.jpg') }}" class="img-thumbnail sample-img">
+          <img src="{{ url_for('static', filename='COVID19.jpg') }}" class="img-thumbnail sample-img" />
         </div>
         <div class="col">
           <p><strong>Tuberculosis</strong></p>
-          <img src="{{ url_for('static', filename='TUBERCULOSIS.jpg') }}" class="img-thumbnail sample-img">
+          <img src="{{ url_for('static', filename='TUBERCULOSIS.jpg') }}" class="img-thumbnail sample-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h4>📈 Model Accuracy & Loss Graphs</h4>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+          <img src="{{ url_for('static', filename='accuracy_plot.png') }}" class="img-fluid rounded shadow mb-3" />
+        </div>
+        <div class="col-md-6">
+          <img src="{{ url_for('static', filename='loss_plot.png') }}" class="img-fluid rounded shadow mb-3" />
         </div>
       </div>
     </div>
